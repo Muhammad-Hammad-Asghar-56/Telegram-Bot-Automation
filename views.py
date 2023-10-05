@@ -53,7 +53,6 @@ def start_scrap():
         thread = Thread(target=scrap, args=(i[0], i[1]))
         threads.append(thread)
         thread.start()
-    for t in threads: t.join()
 
 
 def get_token(proxy, proxy_type):
