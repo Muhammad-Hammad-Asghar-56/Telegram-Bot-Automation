@@ -103,6 +103,23 @@ async def run_SendReaction( chat_id,msg_id):
         phone=row['Phone']
         await main(phone,api,hash_value ,msg_id, chat_id)
 
+async def run_SendReaction(chat_id,msg_id,reactionCount):
+    
+    df = pd.read_csv('phone.csv')
+    apiDf=pd.read_csv('Api.csv')
+    df=df.head(min([reactionCount,len(df)]))
+
+    for index, row in df.iterrows():
+        num_rows = len(df)
+        random_index = random.randint(0, num_rows - 1)
+
+        selected_row = df.iloc[random_index]
+        corresponding_api_row = apiDf.iloc[random_index]
+        api = corresponding_api_row['API']
+        hash_value = corresponding_api_row['Hash']
+        phone=row['Phone']
+        await main(phone,api,hash_value ,msg_id, chat_id)
+
 
 async def main(phone,apiID,hash, msg_id, chat_id):
     try:

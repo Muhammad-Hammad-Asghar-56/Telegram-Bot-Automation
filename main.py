@@ -91,7 +91,9 @@ if __name__ == '__main__':
                     print('👾 Error exist on try again ....')
             elif option==5:
                 os.system('cls')
-                asyncio.run(startBot())
+                inputStr=input("Enter Target Reaction limit (format : Min-Max)")
+                lowerLimit, upperLimit = int(inputStr.split('-')[0]),int(inputStr.split('-')[1])
+                asyncio.run(startBot(lowerLimit,upperLimit))
                 pass
         except Exception as e:
             print(Fore.RED + f"Error found" + str(e))
